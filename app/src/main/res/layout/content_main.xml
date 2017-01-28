@@ -20,8 +20,6 @@
         android:text="@string/pref_title_destination"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         android:textStyle="normal|bold" />
-        <!--android:textAppearance="@android:style/TextAppearance.Material.Large" -->
-        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
