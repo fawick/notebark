@@ -5,15 +5,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.actions.NoteIntents;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -50,6 +54,25 @@ public class MainActivity extends AppCompatActivity {
                 promptSpeechInput();
             }
         });
+
+        Intent intent = getIntent();
+        if (intent.getAction().equals(NoteIntents.ACTION_CREATE_NOTE)) {
+            String fmt = "%s: %s\r\n";
+            String s = String.format(fmt, "Text", intent.getStringExtra(intent.EXTRA_TEXT));
+            s+= String.format(fmt, "Subject", intent.getStringExtra(intent.EXTRA_SUBJECT));
+            s+= String.format(fmt, "Referrer", intent.getStringExtra(intent.EXTRA_REFERRER_NAME));
+            txtSpeechInput.setText(s);
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                for (String key : bundle.keySet()) {
+                    Object value = bundle.get(key);
+                    Log.d("MainActivity new note", String.format("%s: %s (%s)\n", key,
+                            value.toString(), value.getClass().getName()));
+                }
+            } else {
+                s = "could not parse intent extra bundle";
+            }
+        }
     }
 
     /**
