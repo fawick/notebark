@@ -9,8 +9,14 @@
 
     <string name="pref_title_subject">Subject</string>
     <string name="pref_default_subject">[NoteBark] New Note for you</string>
-    <string name="pref_title_recipient">Recipient E-Mail</string>
+    <string name="pref_title_recipient">Recipient E-Mail Address</string>
     <string name="pref_default_recipient">johndoe@example.com</string>
     <string name="need_to_record">You need to record something first</string>
     <string name="sendingMessage">Sending Note...</string>
+    <string name="pref_default_server">smtp.mailbox.org:465</string>
+    <string name="pref_title_server">SMTP Server</string>
+    <string name="pref_title_username">SMTP Username</string>
+    <string name="pref_title_password">SMTP Password</string>
+    <string name="pref_default_sender">johndoe@emample.org</string>
+    <string name="pref_title_sender">Sender Address</string>
 </resources>

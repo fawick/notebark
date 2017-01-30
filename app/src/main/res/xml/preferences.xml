@@ -2,6 +2,44 @@
 
     <EditTextPreference
         android:capitalize="none"
+        android:defaultValue="@string/pref_default_server"
+        android:inputType=""
+        android:key="pref_key_server"
+        android:maxLines="1"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:title="@string/pref_title_server" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="pref_key_username"
+        android:maxLines="1"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:title="@string/pref_title_username" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:inputType="textPassword"
+        android:key="pref_key_password"
+        android:maxLines="1"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:title="@string/pref_title_password" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:defaultValue="@string/pref_default_sender"
+        android:inputType="textEmailAddress"
+        android:key="pref_key_sender"
+        android:maxLines="1"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:title="@string/pref_title_sender" />
+
+    <EditTextPreference
+        android:capitalize="none"
         android:defaultValue="@string/pref_default_recipient"
         android:inputType="textEmailAddress"
         android:key="pref_key_recipient"
