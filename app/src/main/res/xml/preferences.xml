@@ -2,19 +2,19 @@
 
     <EditTextPreference
         android:capitalize="none"
-        android:defaultValue="@string/pref_default_destination"
+        android:defaultValue="@string/pref_default_recipient"
         android:inputType="textEmailAddress"
-        android:key="@string/destinationAddressKey"
+        android:key="pref_key_recipient"
         android:maxLines="1"
         android:selectAllOnFocus="false"
         android:singleLine="true"
-        android:title="@string/pref_title_destination" />
+        android:title="@string/pref_title_recipient" />
 
     <EditTextPreference
         android:capitalize="sentences"
         android:defaultValue="@string/pref_default_subject"
         android:inputType="textEmailSubject"
-        android:key="@string/subjectKey"
+        android:key="pref_key_subject"
         android:maxLines="1"
         android:selectAllOnFocus="false"
         android:singleLine="true"

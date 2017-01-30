@@ -12,6 +12,11 @@ import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
 public class SettingsActivity extends PreferenceActivity {
+
+    public static final String PREF_KEY_SUBJECT = "pref_key_subject";
+    public static final String PREF_KEY_ACCOUNT_NAME = "pref_key_account_name";
+    public static final String PREF_KEY_RECIPIENT = "pref_key_recipient";
+
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -72,8 +77,8 @@ public class SettingsActivity extends PreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.destinationAddressKey)));
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.subjectKey)));
+            bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_RECIPIENT));
+            bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_SUBJECT));
         }
 
         @Override

@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
     private static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
 
-    private static final String PREF_ACCOUNT_NAME = "accountName";
     private static final String[] SCOPES = {GmailScopes.MAIL_GOOGLE_COM};
 
     private static final String RFC822_DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
@@ -110,10 +109,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void useSettings() {
-        SharedPreferences prefs =
-                PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        ((TextView) findViewById(R.id.destination)).setText(prefs.getString(getString(R.string.destinationAddressKey), ""));
-        ((TextView) findViewById(R.id.subject)).setText(prefs.getString(getString(R.string.subjectKey), ""));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        ((TextView) findViewById(R.id.recipient)).setText(
+                prefs.getString(SettingsActivity.PREF_KEY_RECIPIENT, ""));
+        ((TextView) findViewById(R.id.subject)).setText(
+                prefs.getString(SettingsActivity.PREF_KEY_SUBJECT, ""));
     }
 
     private void sendNote(String body) {
@@ -122,16 +122,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     private String createMail(String body) {
-        SharedPreferences prefs =
-                PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String to = prefs.getString(getString(R.string.destinationAddressKey), "");
-        String subject = prefs.getString(getString(R.string.subjectKey), "");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String from = prefs.getString(SettingsActivity.PREF_KEY_ACCOUNT_NAME, "");
+        String to = prefs.getString(SettingsActivity.PREF_KEY_RECIPIENT, "");
+        String subject = prefs.getString(SettingsActivity.PREF_KEY_SUBJECT, "");
         String date = formatter.format(new Date());
-        String fmt = "From: dsimfabian@gmail.com\r\n" +
+        String fmt = "From: %s\r\n" +
                         "To: %s\r\n" +
                         "Date: %s\r\n" +
                         "Subject: %s\r\n\r\n%s";
-        return String.format(fmt, to, date, subject, body);
+        return String.format(fmt, from, to, date, subject, body);
     }
 
     /**
@@ -188,9 +188,9 @@ public class MainActivity extends AppCompatActivity
                             data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
                     if (accountName != null) {
                         SharedPreferences settings =
-                                getPreferences(Context.MODE_PRIVATE);
+                                PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                         SharedPreferences.Editor editor = settings.edit();
-                        editor.putString(PREF_ACCOUNT_NAME, accountName);
+                        editor.putString(SettingsActivity.PREF_KEY_ACCOUNT_NAME, accountName);
                         editor.apply();
                         mCredential.setSelectedAccountName(accountName);
                         sendNoteViaGmail();
@@ -263,8 +263,9 @@ public class MainActivity extends AppCompatActivity
     private void chooseAccount() {
         if (EasyPermissions.hasPermissions(
                 this, Manifest.permission.GET_ACCOUNTS)) {
-            String accountName = getPreferences(Context.MODE_PRIVATE)
-                    .getString(PREF_ACCOUNT_NAME, null);
+            SharedPreferences prefs =
+                    PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            String accountName = prefs.getString(SettingsActivity.PREF_KEY_ACCOUNT_NAME, null);
             if (accountName != null) {
                 mCredential.setSelectedAccountName(accountName);
                 sendNoteViaGmail();

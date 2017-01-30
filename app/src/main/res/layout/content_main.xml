@@ -17,13 +17,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pref_title_destination"
+        android:text="@string/pref_title_recipient"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         android:textStyle="normal|bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/destination"
+        android:id="@+id/recipient"
         android:text=""
         android:textStyle="normal"
         android:layout_marginBottom="10dp"

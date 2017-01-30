@@ -9,10 +9,8 @@
 
     <string name="pref_title_subject">Subject</string>
     <string name="pref_default_subject">[NoteBark] New Note for you</string>
-    <string name="pref_title_destination">Destination E-Mail</string>
-    <string name="pref_default_destination">johndoe@example.com</string>
+    <string name="pref_title_recipient">Recipient E-Mail</string>
+    <string name="pref_default_recipient">johndoe@example.com</string>
     <string name="need_to_record">You need to record something first</string>
-    <string name="destinationAddressKey">destination_address</string>
-    <string name="subjectKey">subject</string>
     <string name="sendingMessage">Sending Note...</string>
 </resources>
